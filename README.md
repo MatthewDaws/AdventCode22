@@ -1,2 +1,3 @@
-# AdventCode22
-Advent of Code 2022 in Python
+# Advent of Code 22
+
+Again, in Python.  Just noodling around, so expect slow progress.
