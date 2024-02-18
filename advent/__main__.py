@@ -39,8 +39,8 @@ def main():
     if mode == "all":
         runall()
         exit(0)
-    modulename = f"day{puzzle}"
-    day = importlib.import_module(modulename)
+    modulename = f".day{puzzle}"
+    day = importlib.import_module(modulename, "advent")
     output = day.main(secondflag)
     print(output)
 
