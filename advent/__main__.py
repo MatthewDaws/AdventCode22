@@ -1,9 +1,22 @@
-import sys, importlib
+import sys, importlib, time
+
+def run(puzzle, secondflag):
+    modulename = f".day{puzzle}"
+    day = importlib.import_module(modulename, "advent")
+    return day.main(secondflag)
 
 def runall():
-    pass
-
-
+    answers = [(69693, 200945), (11150, 8295)]
+    for day, (first, second) in enumerate(answers):
+        start = time.perf_counter_ns()
+        one = run(day+1, False)
+        t1 = (time.perf_counter_ns() - start) // 1000000
+        assert one == first
+        start = time.perf_counter_ns()
+        two = run(day+1, True)
+        t2 = (time.perf_counter_ns() - start) // 1000000
+        assert two == second
+        print(f"Day {day+1} : {one} ({t1} ms) and {two} ({t2} ms).")
 
 def parse_args(args):
     """return `(mode, puzzlenumber, secondflag)`
@@ -39,10 +52,8 @@ def main():
     if mode == "all":
         runall()
         exit(0)
-    modulename = f".day{puzzle}"
-    day = importlib.import_module(modulename, "advent")
-    output = day.main(secondflag)
-    print(output)
+    print(run(puzzle, secondflag))
+          
 
 if __name__ == "__main__":
     main()
