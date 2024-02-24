@@ -6,7 +6,8 @@ def run(puzzle, secondflag):
     return day.main(secondflag)
 
 def runall():
-    answers = [(69693, 200945), (11150, 8295), (7817, 2444), (503, 827)]
+    answers = [(69693, 200945), (11150, 8295), (7817, 2444), (503, 827), ("ZWHVFWQWW", "HZFZCCWWV"),
+               (1093, 3534)]
     for day, (first, second) in enumerate(answers):
         start = time.perf_counter_ns()
         one = run(day+1, False)
