@@ -92,4 +92,4 @@ def main(second_flag):
             out.append(x)
         return "".join(out)
     #print("\n".join(dbl(x) for x in rows))
-    return "FZBPBFZF"
+    return "FZBPBFZF", "\n".join(dbl(x) for x in rows)

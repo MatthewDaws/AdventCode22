@@ -1,21 +1,39 @@
 import sys, importlib, time
 
-def run(puzzle, secondflag):
+def fullrun(puzzle, secondflag):
     modulename = f".day{puzzle}"
     day = importlib.import_module(modulename, "advent")
     return day.main(secondflag)
 
+def takeone(answer):
+    try:
+        num, *_ = answer
+    except:
+        return answer
+    return num
+
+def run(puzzle, secondflag):
+    answer = fullrun(puzzle, secondflag)
+    return takeone(answer)
+
+def check10(a, b):
+    assert b[1] == '########..########..######....######....######....########..########..########..\n##..............##..##....##..##....##..##....##..##..............##..##........\n######........##....######....##....##..######....######........##....######....\n##..........##......##....##..######....##....##..##..........##......##........\n##........##........##....##..##........##....##..##........##........##........\n##........########..######....##........######....##........########..##........'
+
 def runall():
     answers = [(69693, 200945), (11150, 8295), (7817, 2444), (503, 827), ("ZWHVFWQWW", "HZFZCCWWV"),
                (1093, 3534), (1118405, 12545514), (1560 ,252000), (6376, 2607), (14720, "FZBPBFZF")]
+    specials = {10: check10}
     for day, (first, second) in enumerate(answers):
         start = time.perf_counter_ns()
-        one = run(day+1, False)
+        one = fullrun(day+1, False)
         t1 = (time.perf_counter_ns() - start) // 1000000
-        assert one == first
         start = time.perf_counter_ns()
-        two = run(day+1, True)
+        two = fullrun(day+1, True)
         t2 = (time.perf_counter_ns() - start) // 1000000
+        if day+1 in specials:
+            specials[day+1](one, two)
+            one, two = takeone(one), takeone(two)
+        assert one == first
         assert two == second
         print(f"Day {day+1} : {one} ({t1} ms) and {two} ({t2} ms).")
 
