@@ -21,7 +21,8 @@ def check10(a, b):
 
 def runall():
     answers = [(69693, 200945), (11150, 8295), (7817, 2444), (503, 827), ("ZWHVFWQWW", "HZFZCCWWV"),
-               (1093, 3534), (1118405, 12545514), (1560 ,252000), (6376, 2607), (14720, "FZBPBFZF")]
+               (1093, 3534), (1118405, 12545514), (1560 ,252000), (6376, 2607), (14720, "FZBPBFZF"),
+               (64032, 12729522272)]
     specials = {10: check10}
     for day, (first, second) in enumerate(answers):
         start = time.perf_counter_ns()
