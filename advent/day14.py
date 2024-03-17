@@ -67,7 +67,7 @@ class Map:
         return self._xstart
 
     def __str__(self):
-        out = [["." for _ in self._map[0]] for _ in self._map]
+        out = [["." for _ in self._sand[0]] for _ in self._sand]
         out[0][500-self._xstart] = "+"
         def place(map, ch):
             for y, row in enumerate(map):
@@ -138,6 +138,24 @@ class ExpandingMap(Map):
             return True
         return self._map[y][xx] or self._sand[y][xx]
 
+    def fastall(self):
+        self._sand[0][500 - self._xstart] = True
+        count = 1
+        xmax = len(self._map[0])
+        for y in range(1, self._maxy+1):
+            prevrow = self._sand[y-1]
+            if y == self._maxy:
+                maprow = [False] * len(self._map[0])
+            else:
+                maprow = self._map[y]
+            for x in range(1, xmax-1):
+                if maprow[x]:
+                    continue
+                if prevrow[x-1] or prevrow[x] or prevrow[x+1]:
+                    self._sand[y][x] = True
+                    count += 1
+        return count
+
     def dropall(self):
         count = 0
         while True:
@@ -154,4 +172,4 @@ def main(secondflag):
     if not secondflag:
         return map.dropall()
     map = ExpandingMap(map)
-    return map.dropall()
+    return map.fastall()

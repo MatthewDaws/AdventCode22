@@ -69,4 +69,7 @@ def test_expanding_map(map1):
 def test_expanding_dropall(map1):
     map = day.ExpandingMap(map1)
     assert map.dropall() == 93
-    
+
+def test_faster_2nd(map1):
+    map = day.ExpandingMap(map1)
+    assert map.fastall() == 93
