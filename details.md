@@ -34,3 +34,9 @@ so $2y = d^1 +d^2 + s_y^1 +s_y^2 + 2 + s_x^1 - s_x^2$.
 
 The other two cases don't make sense, as these correspond to two balls never overlapping (just being of gap size 1 distant).
 
+
+## Day 16
+
+Spent some time on this one.  I wondered if there was a dynamic programming approach, but I couldn't see what an "optimal substructure" would be.  Searching all possible routes is impossibly slow, but a simple backtracking algorithm works, in the end.
+
+The 2nd part is very slow even with the backtracking idea.
