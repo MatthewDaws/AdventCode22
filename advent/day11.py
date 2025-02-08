@@ -134,7 +134,7 @@ class Monkeys:
         if len(line.strip()) == 0:
             return None, None
         
-        monkey_line = re.compile("Monkey (\d+):")
+        monkey_line = re.compile("Monkey (\\d+):")
         mo = monkey_line.match(line)
         if not mo:
             raise SyntaxError(line)
